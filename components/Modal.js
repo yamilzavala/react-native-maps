@@ -1,11 +1,11 @@
 import React from "react";
 import { View, Modal, StyleSheet, Text } from "react-native";
-export default ModalComponent = () => {
+export default ModalComponent = ({children, visibility,}) => {
   return (
-    <Modal visible={false} transparent={true} animation="fade">
+    <Modal visible={visibility} transparent={true} animation="fade">
       <View style={styles.center}>
         <View style={styles.modalView}>
-          <Text>Text from Modal</Text>
+          {children}
         </View>
       </View>
     </Modal>

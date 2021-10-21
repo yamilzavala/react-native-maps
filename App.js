@@ -1,9 +1,10 @@
 import React,{useState} from "react";
 import { StyleSheet, Text, View, Modal } from "react-native";
-import { MapComponent, ModalComponent, PanelComponent } from "./components";
+import { MapComponent, ModalComponent, PanelComponent, InputComponent, Button } from "./components";
 
 export default function App() {
   const [points, setPoints] = useState([]);
+  const [visible, setVisible] = useState(true);
 
   const handleLongPress = ({nativeEvent}) => {
     const newPoint = points.concat({coordinate: nativeEvent.coordinate})
@@ -14,7 +15,12 @@ export default function App() {
   return (
     <View style={styles.container}>
       <MapComponent onLongPress={handleLongPress}/>
-      <ModalComponent />
+      <ModalComponent visibility={visible}>
+        <InputComponent title="Modal title" placeholder='Type a name...'/>      
+        
+        {/* <Text>Algo</Text> */}
+      
+      </ModalComponent>
       <PanelComponent />
     </View>
   );
