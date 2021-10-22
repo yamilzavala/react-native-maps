@@ -17,6 +17,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: "#FFFFFF",
     padding: 20,
+    width: 250, 
+    height: 200
   },
   center: {
     flex: 1,
