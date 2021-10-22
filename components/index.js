@@ -3,3 +3,4 @@ export { default as ModalComponent } from "./Modal";
 export { default as PanelComponent } from "./Panel";
 export { default as InputComponent } from "./Input";
 export { default as ListComponent } from "./List";
+// export { default as PointComponent } from "./Point";

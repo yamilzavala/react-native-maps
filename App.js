@@ -4,8 +4,9 @@ import {
   MapComponent,
   ModalComponent,
   PanelComponent,
-  InputComponent,
   ListComponent,
+  // PointComponent,
+  InputComponent,
 } from "./components";
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
   const [temporalName, setTempName] = useState("");
   const [temporalPoint, setTempPoint] = useState({});
   const [modalFilter, setModalFilter] = useState("showModalPoint");
+  const [showMarkersMap, setShowMarkers] = useState(true);
 
   const handleLongPress = ({ nativeEvent }) => {
     setVisibleList(false);
@@ -56,31 +58,52 @@ export default function App() {
     setVisibleList(false);
   };
 
+  handleToggleShowMarkers = () => {
+    setShowMarkers(!showMarkersMap);
+  };
+
   console.log(points);
 
   return (
     <View style={styles.container}>
-      <MapComponent onLongPress={handleLongPress} />
+      <MapComponent
+        onLongPress={handleLongPress}
+        pointsToShowInMap={points}
+        showMarkersInMap={showMarkersMap}
+      />
 
       <View>
         {modalFilter === "showModalPoint" ? (
           <ModalComponent visibility={visible}>
+            {/* <PointComponent
+              handleUpdateText={handleChangeText}
+              handleSubmitText={handleSubmit}
+              handleCancelText={handleCancel}
+            /> */}
             <InputComponent
               title="Modal title"
               placeholder="Type a name..."
               onChangeText={handleChangeText}
             />
+
             <Button title="Accept" onPress={handleSubmit} />
             <Button title="Cancel" onPress={handleCancel} />
           </ModalComponent>
         ) : (
           <ModalComponent visibility={visibleList}>
-            <ListComponent points={points} closeListModal={handleCloseListModal}/>
+            <ListComponent
+              points={points}
+              closeListModal={handleCloseListModal}
+            />
           </ModalComponent>
         )}
       </View>
 
-      <PanelComponent showList={handleShowList} textLeft="Show List" />
+      <PanelComponent
+        showList={handleShowList}
+        textLeft="Show List"
+        showMarkers={handleToggleShowMarkers}
+      />
     </View>
   );
 }
